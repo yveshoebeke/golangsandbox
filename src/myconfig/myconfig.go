@@ -1,3 +1,5 @@
+// myconfig
+// reads to configuration file
 package myconfig
 
 import (
@@ -6,6 +8,8 @@ import (
 	"bytes"
 	"encoding/json"
 )
+
+const CONFIGPATH = "/config/config.json"
 
 type Config struct {
 	Waypoints struct {
@@ -17,7 +21,7 @@ func Getconfig() *Config {
 	var config Config
 	var buffer bytes.Buffer
 	buffer.WriteString(os.Getenv("GOPATH"))
-	buffer.WriteString("/config/config.json")
+	buffer.WriteString(CONFIGPATH)
 	var configfilename string = buffer.String()
 
 	configFile, err := os.Open(configfilename)

@@ -1,3 +1,5 @@
+// readnav
+// reads the nav waypoints out of a json file.
 package readnav
 
 import (
@@ -8,6 +10,7 @@ import (
 	"myconfig"
 )
 
+// waypoint construct
 type Waypoint struct {
 	Locations []struct {
 		Name string `json:"name"`
@@ -17,6 +20,7 @@ type Waypoint struct {
 	} `json:"locations"`
 }
 
+// reads all the waypoint data and 'inits' the structure.
 func Readnav() *Waypoint {
 	config := myconfig.Getconfig()
 	var buffer bytes.Buffer
