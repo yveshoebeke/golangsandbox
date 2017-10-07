@@ -8,13 +8,8 @@ import (
 )
 
 // constants needed
-const VERSION = "1.0b"          // version
 const DEG2RAD = math.Pi / 180   // degrees to rads conversion
-const ARGSNEEDED = 5            // CLI arguments needed (+1 for exec name)
 const EARTHRADIUS = 6378100     // Earth radius in meters (aprox)
-const M2KM = 0.001              // meters to kilometers conversion
-const M2SM = 0.0006214          // meters to statute miles
-const M2NM = 0.0005399          // meters to nautical miles
 
 // haversin function
 // (look it up - Wikipedia got a good explanation (curvature of the Earth stuff)
