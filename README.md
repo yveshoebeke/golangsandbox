@@ -11,5 +11,6 @@ And one main fuction that ties it all together:
 * makenavplan - Just puts the 2 and 2 together if you will and outputs to console.
 
 Note: _non-standard folders config/ and data/ contain the config.json and navplan.json files. Maybe another thing that could be improved in the real world._
+_I was looking for an excuse to use interface{} but couldn't readily identify a real purpose for one, probably somewhere when myconfig would get more mature_
 
 (With this Abe will never lose his way)
