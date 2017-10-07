@@ -5,13 +5,8 @@ import (
 	"os"
 	"bytes"
 	"encoding/json"
+	"myconfig"
 )
-
-type Config struct {
-	Waypoints struct {
-		Navplan string `json:"navplan"`
-	} `json:"waypoints"`
-}
 
 type Waypoint struct {
 	Locations []struct {
@@ -22,30 +17,10 @@ type Waypoint struct {
 	} `json:"locations"`
 }
 
-func LoadConfig(file string) (Config, error) {
-    var config Config
-    configFile, err := os.Open(file)
-    defer configFile.Close()
-    if err != nil {
-		return config, err
-	}
-
-    jsonParser := json.NewDecoder(configFile)
-    jsonParser.Decode(&config)
-    return config, err
-}
-
 func Readnav() *Waypoint {
+	config := myconfig.Getconfig()
 	var buffer bytes.Buffer
-	buffer.WriteString(os.Getenv("GOPATH"))
-	buffer.WriteString("/config/config.json")
-	var configfilename string = buffer.String()
 
-
-	fmt.Println("Running...")
-	config, _ := LoadConfig(configfilename)
-
-	buffer.Reset()
 	buffer.WriteString(os.Getenv("GOPATH"))
 	buffer.WriteString(config.Waypoints.Navplan)
 	var navplanfilename string = buffer.String()
