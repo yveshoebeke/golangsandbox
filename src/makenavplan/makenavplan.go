@@ -7,6 +7,7 @@ import (
   "readnav" // get waypoints
   "dandb"   // calculate distance and bearing
   "myconfig"
+  "logusage"
 )
 
 func main() {
@@ -24,5 +25,6 @@ func main() {
     }
   }
 
+  logusage.Logusage()
   fmt.Println("\nDone")
 }
