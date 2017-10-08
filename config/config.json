@@ -1,4 +1,9 @@
 {
+  "application":{
+    "name":"Navigation plan creation",
+    "version":"0.1c",
+    "author":"yves.hoebeke@gmail.com"
+  },
   "waypoints": {
     "navplan":"/data/navplan.json"
   },

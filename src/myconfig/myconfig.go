@@ -12,7 +12,12 @@ import (
 const CONFIGPATH = "/config/config.json"
 
 type Config struct {
-	Waypoints struct {
+	Application struct {
+		Name string `json:"name"`
+		Version string `json:"version"`
+		Author string `json:"author"`
+	}
+	Navdata struct {
 	  Navplan string `json:"navplan"`
 	} `json:"waypoints"`
   Database struct {
@@ -43,11 +48,14 @@ func Getconfig() *Config {
 	configFile, err := os.Open(configfilename)
 	defer configFile.Close()
 	if err != nil {
-		fmt.Println("Error opening configuraton file", configfilename, err.Error())
+		fmt.Println("Error:", err.Error())
 		os.Exit(1)
 	}
 
 	jsonParser := json.NewDecoder(configFile)
-	jsonParser.Decode(&Myconfig)
+	if err = jsonParser.Decode(&Myconfig); err != nil {
+		fmt.Println("Configuration decoding error:", err.Error())
+		os.Exit(1)
+	}
 	return &Myconfig
 }

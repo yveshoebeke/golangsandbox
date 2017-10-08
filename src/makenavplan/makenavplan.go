@@ -6,10 +6,14 @@ import (
   "fmt"
   "readnav" // get waypoints
   "dandb"   // calculate distance and bearing
+  "myconfig"
 )
 
 func main() {
+  config := myconfig.Getconfig()
   waypoint := readnav.Readnav()
+
+  fmt.Printf("\n%s (Version %s)\n\n",config.Application.Name,config.Application.Version)
 
   // iterate through the waypoints and display each segment with it's pertinent data on the console.
   for i := range waypoint.Locations {
@@ -19,4 +23,6 @@ func main() {
       fmt.Printf("\tdistance: %0.2fkm bearing: %0.1f (waypoint transition: %s -> %s)\n",distance/1000,bearing,waypoint.Locations[i-1].Type,waypoint.Locations[i].Type)
     }
   }
+
+  fmt.Println("\nDone")
 }
