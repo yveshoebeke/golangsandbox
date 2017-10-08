@@ -1,6 +1,6 @@
 # golangsandbox
 
-This reposatory contains ~~2~~ 3 (_timehopping..._) packages:
+This reposatory contains ~~2~~ 3 packages:
 
 * dandb - Calculates distance and bearing between 2 geo locations.
 * readnav - Reads a json file with pertinent waypoint data. ~~File locations are handled by some hand written code to read a config file, but could be improved on by using something like Viper or gonfig. We'll cross that bridge when needed.~~
