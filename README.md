@@ -5,6 +5,7 @@ This repository contains ~~_2_~~ 3 packages:
 * dandb - Calculates distance and bearing between 2 geo locations.
 * readnav - Reads a json file with pertinent waypoint data. ~~File locations are handled by some hand written code to read a config file, but could be improved on by using something like Viper or gonfig. We'll cross that bridge when needed.~~
 * myconfig - Package to read the (albeit minimal here) configuration file. I understand there are more robust packages out there (Viper and Gonfig come to mind).
+* logusage - Records user (login) name and time results were displayed in a mongoDB collection.
 
 And one main fuction that ties it all together:
 
