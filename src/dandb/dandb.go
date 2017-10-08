@@ -10,7 +10,6 @@ import (
 
 // constants needed
 const DEG2RAD = math.Pi / 180   // degrees to rads conversion
-//const EARTHRADIUS = 6378100     // Earth radius in meters (aprox)
 
 // haversin function
 // (look it up - Wikipedia got a good explanation (curvature of the Earth stuff)
