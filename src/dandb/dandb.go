@@ -5,11 +5,12 @@ package dandb
 import (
   "math"
   "strconv"
+  "myconfig"
 )
 
 // constants needed
 const DEG2RAD = math.Pi / 180   // degrees to rads conversion
-const EARTHRADIUS = 6378100     // Earth radius in meters (aprox)
+//const EARTHRADIUS = 6378100     // Earth radius in meters (aprox)
 
 // haversin function
 // (look it up - Wikipedia got a good explanation (curvature of the Earth stuff)
@@ -32,9 +33,10 @@ type Geopoint struct {
 }
 
 // g method to get distance subject to the structure
-func (g *Geopoint) Distance() float64 {
+func (g *Geopoint) Distance(er float64) float64 {
   g.h = hsin(g.lat2 - g.lat1) + math.Cos(g.lat1) * math.Cos(g.lat2) * hsin(g.lon2 - g.lon1)
-  g.distance = 2 * EARTHRADIUS * math.Asin(math.Sqrt(g.h))
+//  g.distance = 2 * EARTHRADIUS * math.Asin(math.Sqrt(g.h))
+  g.distance = 2 * er * math.Asin(math.Sqrt(g.h))
 
   return g.distance
  }
@@ -54,6 +56,7 @@ func (g *Geopoint) Bearing() float64 {
 
 //entry point
 func Dandb(slat1, slon1, slat2, slon2 string) (float64, float64) {
+  config := myconfig.Getconfig()
   var lat1, lon1, lat2, lon2, distance, bearing, h, x, y float64 = 0, 0, 0, 0, 0, 0, 0, 0, 0
   lat1, lon1, lat2, lon2 = getD2Rdata(slat1, slon1, slat2, slon2)
 
@@ -61,7 +64,7 @@ func Dandb(slat1, slon1, slat2, slon2 string) (float64, float64) {
   g := Geopoint{lat1, lon1, lat2, lon2, distance, bearing, h, x, y}
 
   // get distance and bearing from methods
-  distance = g.Distance()
+  distance = g.Distance(config.Constants.Earthradius)
   bearing = g.Bearing()
 
   return distance, bearing

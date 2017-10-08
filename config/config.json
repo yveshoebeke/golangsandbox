@@ -1,5 +1,20 @@
 {
   "waypoints": {
     "navplan":"/data/navplan.json"
+  },
+  "database": {
+    "host":"localhost",
+    "port":"3307",
+    "user":"root",
+    "password":"Secret01",
+    "database":"timehop"
+  },
+  "conversions": {
+    "m2km":0.001,
+    "m2sm":0.0006214,
+    "m2nm":0.0005399
+  },
+  "constants": {
+    "earthradius": 6378100
   }
 }

@@ -2,33 +2,33 @@
 "locations":
   [
     {
-      "name":"Stamford", 
+      "name":"Stamford",
       "type":"start",
-      "lat": "41.054", 
+      "lat": "41.054",
       "long": "-73.526"
     },
     {
-      "name":"New York", 
+      "name":"New York",
       "type":"enroute",
-      "lat": "40.712", 
+      "lat": "40.712",
       "long": "-74.013"
     },
     {
-      "name":"Reykjavik", 
+      "name":"Reykjavik",
       "type":"enroute",
       "lat": "64.121", 
       "long": "-21.826"
     },
     {
-      "name":"Brussels", 
+      "name":"Brussels",
       "type":"enroute",
-      "lat": "50.847", 
+      "lat": "50.847",
       "long": "4.354"
     },
     {
-      "name":"Belo Horizonte", 
+      "name":"Belo Horizonte",
       "type":"stop",
-      "lat": "-19.896", 
+      "lat": "-19.896",
       "long": "-43.959"
     }
   ]
