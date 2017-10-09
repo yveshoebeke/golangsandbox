@@ -31,8 +31,8 @@ type Config struct {
   } `json:"database"`
   Conversions struct {
     M2km float64 `json:"m2km"`
-    M2sm float64 `json:"M2sm"`
-    M2nm float64 `json:"M2nm"`
+    M2sm float64 `json:"m2sm"`
+    M2nm float64 `json:"m2nm"`
   } `json:"conversions"`
   Constants struct {
     Earthradius float64 `json:"earthradius"`
