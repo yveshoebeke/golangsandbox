@@ -9,10 +9,11 @@
   },
   "database": {
     "host":"localhost",
-    "port":"3307",
-    "user":"root",
-    "password":"Secret01",
-    "database":"timehop"
+    "port":"",
+    "user":"",
+    "password":"",
+    "databasename":"test",
+    "collectionname":"timehopyves"
   },
   "conversions": {
     "m2km":0.001,

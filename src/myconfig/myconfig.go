@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 )
 
+// hard coded file path (got to start somewhere)
 const CONFIGPATH = "/config/config.json"
 
 type Config struct {
@@ -25,7 +26,8 @@ type Config struct {
     Port string `json:"port"`
     User string `json:"user"`
     Password string `json:"password"`
-    Database string `json:"database"`
+    Databasename string `json:"databasename"`
+		Collectionname string `json:"collectionname"`
   } `json:"database"`
   Conversions struct {
     M2km float64 `json:"m2km"`
@@ -37,6 +39,7 @@ type Config struct {
   }
 }
 
+// read configuration data into structure and give it to requestor.
 func Getconfig() *Config {
 	var Myconfig Config
 	var buffer bytes.Buffer

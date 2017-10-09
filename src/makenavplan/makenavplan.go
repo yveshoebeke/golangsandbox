@@ -4,17 +4,24 @@ package main
 
 import (
   "fmt"
-  "readnav" // get waypoints
-  "dandb"   // calculate distance and bearing
-  "myconfig"
-  "logusage"
+  "os"
+  "readnav"   // get waypoints
+  "dandb"     // calculate distance and bearing
+  "myconfig"  // get this app's configuration
+  "logusage"  // db access to log/display session
 )
 
 func main() {
   config := myconfig.Getconfig()
   waypoint := readnav.Readnav()
 
+  // display application name and version
   fmt.Printf("\n%s (Version %s)\n\n",config.Application.Name,config.Application.Version)
+
+  // display this user' previous access sessions to this application
+  fmt.Printf("Previous access by %s:\n", os.Getenv("USER"))
+  logusage.Showall(os.Getenv("USER"))
+  fmt.Println()
 
   // iterate through the waypoints and display each segment with it's pertinent data on the console.
   for i := range waypoint.Locations {
@@ -25,6 +32,8 @@ func main() {
     }
   }
 
-  logusage.Logusage()
+  // log this session
+  logusage.Logit()
+
   fmt.Println("\nDone")
 }
