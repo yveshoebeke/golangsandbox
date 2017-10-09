@@ -19,6 +19,9 @@ And one main fuction that ties it all together:
 * makenavplan - Just puts it all together, if you will; and outputs to console.
 
 
+This should run right out of the box with the only requirement that mongod is installed and running.
+
+
 Note: _non-standard folders config/ and data/ contain the config.json and navplan.json files. Maybe another thing that could be improved in the real world scenario._
 
 
