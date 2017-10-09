@@ -29,6 +29,9 @@ type Config struct {
     Databasename string `json:"databasename"`
 		Collectionname string `json:"collectionname"`
   } `json:"database"`
+	Flags struct {
+		Histoutlimit bool `json:"histoutlimit"`
+	} `json:"flags"`
   Conversions struct {
     M2km float64 `json:"m2km"`
     M2sm float64 `json:"m2sm"`

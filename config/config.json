@@ -15,6 +15,9 @@
     "databasename":"test",
     "collectionname":"timehopyves"
   },
+  "flags": {
+    "histoutlimit": true
+  },
   "conversions": {
     "m2km":0.001,
     "m2sm":0.0006214,

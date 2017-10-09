@@ -26,18 +26,18 @@ func Readnav() *Waypoint {
 	var Mywaypoint Waypoint
 	var buffer bytes.Buffer
 	var navplanfilename string
-
+	// construct path to nav data
 	buffer.WriteString(os.Getenv("GOPATH"))
 	buffer.WriteString(config.Navdata.Navplan)
 	navplanfilename  = buffer.String()
-
+	// try and open nav data file
 	navplanFile, err := os.Open(navplanfilename)
 	defer navplanFile.Close()
 	if err != nil {
 		fmt.Println("Error:", err.Error())
 		os.Exit(1)
 	}
-
+	// parse nav json data
 	jsonParser := json.NewDecoder(navplanFile)
 	if err = jsonParser.Decode(&Mywaypoint); err != nil {
 		fmt.Println("Navigation data decoding error:", err.Error())
