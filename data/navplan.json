@@ -2,34 +2,52 @@
 "locations":
   [
     {
-      "name":"Stamford",
+      "name":"Ghent",
       "type":"start",
+      "lat": "51.054310",
+      "long": "3.718596"
+    },
+    {
+      "name":"Ludenscheid",
+      "type":"enroute",
+      "lat": "51.218954",
+      "long": "7.631937"
+    },
+    {
+      "name":"Likasi",
+      "type":"enroute",
+      "lat": "-10.988495",
+      "long": "26.734774"
+    },
+    {
+      "name":"Antwerp",
+      "type":"enroute",
+      "lat": "51.225053",
+      "long": "4.383117"
+    },
+    {
+      "name":"Mexico City",
+      "type":"enroute",
+      "lat": "19.429375",
+      "long": "-99.129935"
+    },
+    {
+      "name":"Los Angeles",
+      "type":"enroute",
+      "lat": "34.076",
+      "long": "-118.346"
+    },
+    {
+      "name":"Phoenix",
+      "type":"enroute",
+      "lat": "33.443675",
+      "long": "-112.063302"
+    },
+    {
+      "name":"Stamford",
+      "type":"stop",
       "lat": "41.054",
       "long": "-73.526"
-    },
-    {
-      "name":"New York",
-      "type":"enroute",
-      "lat": "40.712",
-      "long": "-74.013"
-    },
-    {
-      "name":"Reykjavik",
-      "type":"enroute",
-      "lat": "64.121", 
-      "long": "-21.826"
-    },
-    {
-      "name":"Brussels",
-      "type":"enroute",
-      "lat": "50.847",
-      "long": "4.354"
-    },
-    {
-      "name":"Belo Horizonte",
-      "type":"stop",
-      "lat": "-19.896",
-      "long": "-43.959"
     }
   ]
 }
