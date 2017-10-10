@@ -22,7 +22,9 @@ And one main fuction that ties it all together:
 This should run right out of the box with the only requirement that mongod is installed and running.
 
 
-Note: _non-standard folders config/ and data/ contain the config.json and navplan.json files. Maybe another thing that could be improved in the real world scenario._
+Note: 
+* _non-standard folders config/ and data/ contain the config.json and navplan.json files. Maybe another thing that could be improved in the real world scenario._
+* _also: in a "real application" the db session would be made persistent and be more conform to a model, for example like here :_ https://github.com/thylong/mongo_mock_go_example
 
 
 (With this Abe will never lose his way)
