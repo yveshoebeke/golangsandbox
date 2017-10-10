@@ -83,14 +83,14 @@ func Showall(userlogin string, lastonly bool) {
   // display last one or all depending on flag.
   if lastonly {
     results := Runtimeinfo{}
-    if err = c.Find(bson.M{"user": userlogin}).Sort("-Runtime").One(&results); err != nil {
+    if err = c.Find(bson.M{"user": userlogin}).Sort("-runtime").One(&results); err != nil {
       panic(err)
     } else {
       fmt.Printf("%s\t%s\n", results.Runtime, results.Navhash)
     }
   } else {
     results := []Runtimeinfo{}
-    if err = c.Find(bson.M{"user": userlogin}).Sort("-Runtime").All(&results); err != nil {
+    if err = c.Find(bson.M{"user": userlogin}).Sort("runtime").All(&results); err != nil {
       panic(err)
     } else {
       var hashchangeflag string
