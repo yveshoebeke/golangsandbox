@@ -20,7 +20,7 @@ func main() {
 
   // display this user' previous access sessions to this application
   fmt.Printf("Previous access by %s:\n", os.Getenv("USER"))
-  logusage.Showall(os.Getenv("USER"), config.Flags.Histoutlimit)
+  logusage.Showall(os.Getenv("USER"))
   fmt.Println()
 
   // iterate through the waypoints and display each segment with it's pertinent data on the console.

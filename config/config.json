@@ -16,7 +16,7 @@
     "collectionname":"timehopyves"
   },
   "flags": {
-    "histoutlimit": true
+    "histoutputlimit": 5
   },
   "conversions": {
     "m2km":0.001,

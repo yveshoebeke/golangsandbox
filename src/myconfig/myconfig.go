@@ -30,7 +30,7 @@ type Config struct {
 		Collectionname string `json:"collectionname"`
   } `json:"database"`
 	Flags struct {
-		Histoutlimit bool `json:"histoutlimit"`
+		Histoutputlimit int `json:"histoutputlimit"`
 	} `json:"flags"`
   Conversions struct {
     M2km float64 `json:"m2km"`

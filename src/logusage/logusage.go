@@ -71,7 +71,7 @@ func Logit() {
 }
 
 // get all session data for user and display it.
-func Showall(userlogin string, lastonly bool) {
+func Showall(userlogin string) {
   config := myconfig.Getconfig()
   session, err := mgo.Dial(config.Database.Host)
   if err != nil {
@@ -81,30 +81,21 @@ func Showall(userlogin string, lastonly bool) {
   c := session.DB(config.Database.Databasename).C(config.Database.Collectionname)
   // find all access records for this user.
   // display last one or all depending on flag.
-  if lastonly {
-    results := Runtimeinfo{}
-    if err = c.Find(bson.M{"user": userlogin}).Sort("-runtime").One(&results); err != nil {
-      panic(err)
-    } else {
-      fmt.Printf("%s\t%s\n", results.Runtime, results.Navhash)
-    }
+  results := []Runtimeinfo{}
+  if err = c.Find(bson.M{"user": userlogin}).Sort("-runtime").Limit(config.Flags.Histoutputlimit).All(&results); err != nil {
+    panic(err)
   } else {
-    results := []Runtimeinfo{}
-    if err = c.Find(bson.M{"user": userlogin}).Sort("runtime").All(&results); err != nil {
-      panic(err)
+    var hashchangeflag string
+    if len(results) == 0 {
+      fmt.Println("No previous access found.")
     } else {
-      var hashchangeflag string
-      if len(results) == 0 {
-        fmt.Println("No previous access found.")
-      } else {
-        for i := range results {
-          if i > 0 && results[i].Navhash != results[i-1].Navhash {
-            hashchangeflag = "!"
-          } else {
-            hashchangeflag = ""
-          }
-          fmt.Printf("%d.\t%s\t%s %s\n", i+1, results[i].Runtime, results[i].Navhash, hashchangeflag)
+      for i := range results {
+        if i > 0 && results[i].Navhash != results[i-1].Navhash {
+          hashchangeflag = "!"
+        } else {
+          hashchangeflag = ""
         }
+        fmt.Printf("%d.\t%s\t%s %s\n", i+1, results[i].Runtime, results[i].Navhash, hashchangeflag)
       }
     }
   }
