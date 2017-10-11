@@ -3,11 +3,11 @@
 package readnav
 
 import (
-	"fmt"
-	"os"
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"myconfig"
+	"os"
 )
 
 // waypoint construct
@@ -15,7 +15,7 @@ type Waypoint struct {
 	Locations []struct {
 		Name string `json:"name"`
 		Type string `json:"type"`
-		Lat string `json:"lat"`
+		Lat  string `json:"lat"`
 		Long string `json:"long"`
 	} `json:"locations"`
 }
@@ -29,7 +29,7 @@ func Readnav() *Waypoint {
 	// construct path to nav data
 	buffer.WriteString(os.Getenv("GOPATH"))
 	buffer.WriteString(config.Navdata.Navplan)
-	navplanfilename  = buffer.String()
+	navplanfilename = buffer.String()
 	// try and open nav data file
 	navplanFile, err := os.Open(navplanfilename)
 	defer navplanFile.Close()
