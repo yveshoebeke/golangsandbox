@@ -14,15 +14,12 @@ import (
 func main() {
 	config := myconfig.Getconfig()
 	waypoint := readnav.Readnav()
-
 	// display application name and version
 	fmt.Printf("\n%s (Version %s)\n\n", config.Application.Name, config.Application.Version)
-
 	// display this user' previous access sessions to this application
 	fmt.Printf("Previous access by %s:\n", os.Getenv("USER"))
-	logusage.Showall(os.Getenv("USER"))
+	logusage.Logaction("showit", "")
 	fmt.Println()
-
 	// iterate through the waypoints and display each segment with it's pertinent data on the console.
 	for i := range waypoint.Locations {
 		if i > 0 {
@@ -31,9 +28,7 @@ func main() {
 			fmt.Printf("\tdistance: %0.2fkm bearing: %0.1f (waypoint transition: %s -> %s)\n", distance*config.Conversions.M2km, bearing, waypoint.Locations[i-1].Type, waypoint.Locations[i].Type)
 		}
 	}
-
 	// log this session
-	logusage.Logit()
-
+	logusage.Logaction("logit", os.Getenv("USER"))
 	fmt.Println("\nDone")
 }

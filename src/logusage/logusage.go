@@ -21,10 +21,23 @@ type Runtimeinfo struct {
 	Runtime time.Time
 }
 
-// connect to mgo host
-func connect(host string) (*mgo.Session, error) {
-	session, err := mgo.Dial(host)
-	return session, err
+// mgo connection to host
+type mgoconn struct {
+	host string
+	db   string
+	col  string
+}
+
+// mgo session from mgo
+type mgosession struct {
+	mgoconn
+	mgosess *mgo.Session
+	mgoerr  error
+}
+
+// get a mgo session
+func (s *mgosession) connect() {
+	s.mgosess, s.mgoerr = mgo.Dial(s.host)
 }
 
 // get MD5 checksum of some file
@@ -48,47 +61,65 @@ func getMD5(filename string) string {
 	return decoded
 }
 
-// record current session
-func Logit() {
+func Logaction(flag string, user string) {
 	config := myconfig.Getconfig()
+
+	if user == "" {
+		user = os.Getenv("USER")
+	}
+
+	co := mgosession{
+		mgoconn{
+			config.Database.Host,
+			config.Database.Databasename,
+			config.Database.Collectionname,
+		}, nil, nil,
+	}
+
+	switch flag {
+		case "logit":
+			logit(user, co, config)
+		case "showit":
+			showit(user, co, config)
+	}
+}
+
+// record current session
+func logit(user string, co mgosession, conf *myconfig.Config) {
 	var buffer bytes.Buffer
 	var navplanfilename string
-	// connect to mongo db
-	session, err := connect(config.Database.Host)
-	if err != nil {
-		panic(err)
+	co.connect()
+	if co.mgoerr != nil {
+		panic(co.mgoerr)
 	}
-	defer session.Close()
-	// Optional. Switching to monotonic session behavior. Data volume
-	// very low here, no impact but leave it in as a matter of principle.
-	session.SetMode(mgo.Monotonic, true)
+	defer co.mgosess.Close()
 	// reference the collection
-	c := session.DB(config.Database.Databasename).C(config.Database.Collectionname)
+	c := co.mgosess.DB(co.db).C(co.col)
 	// construct the navplan data file name to get hash, so we can see what
 	// the user was operating with.
 	buffer.WriteString(os.Getenv("GOPATH"))
-	buffer.WriteString(config.Navdata.Navplan)
+	buffer.WriteString(conf.Navdata.Navplan)
 	navplanfilename = buffer.String()
 	// record it
-	if err = c.Insert(&Runtimeinfo{os.Getenv("USER"), getMD5(navplanfilename), time.Now()}); err != nil {
+	if err := c.Insert(&Runtimeinfo{user, getMD5(navplanfilename), time.Now()}); err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
 	}
 }
 
 // get all session data for user and display it.
-func Showall(userlogin string) {
-	config := myconfig.Getconfig()
-	session, err := connect(config.Database.Host)
-	if err != nil {
-		panic(err)
+func showit(user string, co mgosession, conf *myconfig.Config) {
+	co.connect()
+	if co.mgoerr != nil {
+		panic(co.mgoerr)
 	}
-	defer session.Close()
-	c := session.DB(config.Database.Databasename).C(config.Database.Collectionname)
+	defer co.mgosess.Close()
+	// reference the collection
+	c := co.mgosess.DB(co.db).C(co.col)
 	// find all access records for this user.
 	// display last one or all depending on flag.
 	results := []Runtimeinfo{}
-	if err = c.Find(bson.M{"user": userlogin}).Sort("-runtime").Limit(config.Flags.Histoutputlimit).All(&results); err != nil {
+	if err := c.Find(bson.M{"user": user}).Sort("-runtime").Limit(conf.Flags.Histoutputlimit).All(&results); err != nil {
 		panic(err)
 	} else {
 		var hashchangeflag string
