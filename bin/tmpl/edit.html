@@ -1,0 +1,24 @@
+{{ define "edit" }}
+{{ template "header" }}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Editing: <span style="color:blue">{{.Title}}</span></h1>
+      <form action="/save/{{.Title}}" method="POST">
+      <div>
+        <textarea style="color:maroon" name="body" rows="5" cols="80">{{printf "%s" .Body}}</textarea>
+      </div>
+      <div>
+        <span class="btn btn-default btn-sm"><a href="/">Home</a></span>
+        <span class="btn btn-success btn-sm"><a href="/">Cancel</a></span>
+        <input class="btn btn-danger btn-sm" type="submit" value="Save">
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{{ template "footer" }}
+
+{{ end }}

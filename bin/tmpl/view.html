@@ -1,0 +1,23 @@
+{{ define "view" }}
+{{ template "header" }}
+
+<div class="container">
+  <div class="row">
+    <div class="col-col-8 col-md-offset-2">
+      <h1>Content of <span style="color:blue">{{.Title}}</span>:</h1>
+      <div>
+        <p style="color:maroon">
+          {{printf "%s" .Body}}
+        </p>
+        <p>
+          <span class="btn btn-default btn-sm"><a href="/">Home</a></span>
+          <span class="btn btn-warning btn-sm"><a href="/edit/{{.Title}}">Edit</a></span>
+          <span class="btn btn-danger btn-sm"><a href="/delete/{{.Title}}">Remove</a></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ template "footer" }}
+{{ end }}
