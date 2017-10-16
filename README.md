@@ -37,13 +37,13 @@ Note:
 
 Data manipulation by browser. Yes, took some portions of the golang example and put some of my own twists on it.
 
-bin/testdata will invoke a localhost. Default port is 8080, but can be set by adding a valid port number after the command.
+* bin/testdata will invoke a localhost. Default port is 8080, but can be set by adding a valid port number after the command.
 
-bin/data: contains the data (.txt) files.
-bin/tmpl: html templating.
-bin/css: local style theme.
+* bin/data: contains the data (.txt) files.
+* bin/tmpl: html templating.
+* bin/css: local style theme.
 
-These locations can be improved on if this was to be a real-world setting.
+_These locations can be improved on if this was to be a real-world setting._
 
 
 ## HTTP wrapper around the first excersise
