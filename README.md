@@ -1,5 +1,8 @@
 # golangsandbox
 
+
+## Terminal oriented exercise
+
 The code contained here is meant to be an educational project of the Go language.
 
 It will read its configuration and navigation waypoint data and calculate distance and bearing between the point defining a segment (leg). It will record this usage in mongo.
@@ -28,3 +31,21 @@ Note:
 
 
 (With this Abe will never lose his way)
+
+
+## HTTP oriented excercise
+
+Data manipulation by browser. Yes, took some portions of the golang example and put some of my own twists on it.
+
+* bin/testdata will invoke a localhost. Default port is 8080, but can be set by adding a valid port number after the command.
+
+* bin/data: contains the data (.txt) files.
+* bin/tmpl: html templating.
+* bin/css: local style theme.
+
+_These locations can be improved on if this was to be a real-world setting._
+
+
+## HTTP wrapper around the first excersise
+
+(coming soon)
