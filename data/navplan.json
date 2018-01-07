@@ -45,9 +45,21 @@
     },
     {
       "name":"Stamford",
-      "type":"stop",
+      "type":"enroute",
       "lat": "41.054",
       "long": "-73.526"
+    },
+    {
+      "name":"Belo Horizonte",
+      "type":"enroute",
+      "lat": "-19.896",
+      "long": "-43.959"
+    },
+    {
+      "name":"Chaves",
+      "type":"stop",
+      "lat": "41.74157",
+      "long": "-7.463101"
     }
   ]
 }

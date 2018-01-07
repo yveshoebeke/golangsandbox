@@ -2,13 +2,13 @@
 package logusage
 
 import (
-	"bytes"
-	"crypto/md5"
-	"encoding/hex"
+//	"bytes"
+//	"crypto/md5"
+//	"encoding/hex"
+//	"io"
 	"fmt"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"io"
 	"myconfig"
 	"os"
 	"time"
@@ -40,6 +40,7 @@ func (s *mgosession) connect() {
 	s.mgosess, s.mgoerr = mgo.Dial(s.host)
 }
 
+/*
 // get MD5 checksum of some file
 func getMD5(filename string) string {
 	file, err := os.Open(filename)
@@ -60,6 +61,7 @@ func getMD5(filename string) string {
 
 	return decoded
 }
+*/
 
 func Logaction(flag string, user string) {
 	config := myconfig.Getconfig()
@@ -86,8 +88,8 @@ func Logaction(flag string, user string) {
 
 // record current session
 func logit(user string, co mgosession, conf *myconfig.Config) {
-	var buffer bytes.Buffer
-	var navplanfilename string
+	//var buffer bytes.Buffer
+	//var navplanfilename string
 	co.connect()
 	if co.mgoerr != nil {
 		panic(co.mgoerr)
@@ -95,13 +97,16 @@ func logit(user string, co mgosession, conf *myconfig.Config) {
 	defer co.mgosess.Close()
 	// reference the collection
 	c := co.mgosess.DB(co.db).C(co.col)
+	/*
 	// construct the navplan data file name to get hash, so we can see what
 	// the user was operating with.
 	buffer.WriteString(os.Getenv("GOPATH"))
 	buffer.WriteString(conf.Navdata.Navplan)
 	navplanfilename = buffer.String()
+	fmt.Println(navplanfilename)
+	*/
 	// record it
-	if err := c.Insert(&Runtimeinfo{user, getMD5(navplanfilename), time.Now()}); err != nil {
+	if err := c.Insert(&Runtimeinfo{user, "(depreciated)", time.Now()}); err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
 	}

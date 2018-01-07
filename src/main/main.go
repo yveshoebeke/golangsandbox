@@ -13,7 +13,7 @@ import (
 
 func main() {
 	config := myconfig.Getconfig()
-	waypoint := readnav.Readnav()
+	waypoint := readnav.Readnav("navplan.json")
 	// display application name and version
 	fmt.Printf("\n%s (Version %s)\n\n", config.Application.Name, config.Application.Version)
 	// display this user' previous access sessions to this application

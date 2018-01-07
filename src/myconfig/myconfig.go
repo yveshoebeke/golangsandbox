@@ -19,7 +19,8 @@ type Config struct {
 		Author string `json:"author"`
 	}
 	Navdata struct {
-	  Navplan string `json:"navplan"`
+		Navplandir string `json:"navplandir"`
+	  Navdefault string `json:"navdefault"`
 	} `json:"waypoints"`
   Database struct {
     Host string `json:"host"`

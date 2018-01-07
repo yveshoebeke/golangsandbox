@@ -21,14 +21,16 @@ type Waypoint struct {
 }
 
 // reads all the waypoint data and 'inits' the structure.
-func Readnav() *Waypoint {
+func Readnav(filename string) *Waypoint {
 	config := myconfig.Getconfig()
+
 	var Mywaypoint Waypoint
 	var buffer bytes.Buffer
 	var navplanfilename string
 	// construct path to nav data
 	buffer.WriteString(os.Getenv("GOPATH"))
-	buffer.WriteString(config.Navdata.Navplan)
+	buffer.WriteString(config.Navdata.Navplandir)
+	buffer.WriteString(filename)
 	navplanfilename = buffer.String()
 	// try and open nav data file
 	navplanFile, err := os.Open(navplanfilename)

@@ -5,7 +5,8 @@
     "author":"yves.hoebeke@gmail.com"
   },
   "waypoints": {
-    "navplan":"/data/navplan.json"
+    "navplandir":"/data/",
+    "navdefault":"navplan.json"
   },
   "database": {
     "host":"localhost",
